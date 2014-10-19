@@ -1,0 +1,91 @@
+Communication avec le serveur http
+
+Les contactes et les clients sont deux entités differentes et ont chacun leur representation en json et leur propre requetes http.
+Les paramètres peuvent etre passer dans l'url en POST.
+Pour effectuer des taches sur les contactes, le serveur attent un paramètre action:
+
+list: obtenir la liste, renvoie tout les objets dans un tableau json
+create: creer un nouvel objet
+update: modifier un objet existant
+delete: supprimer un objet
+
+Requettes HTTP Contact
+
+Representation json:
+
+{
+	"id":1,
+	"firstName":"Albert",
+	"lastName":"Clark",
+	"birthDate":"05/03/2014",
+	"phoneNumber":0-(416)249-4816,
+	"email":"aclark0@mit.edu",
+	"isActive":true
+}
+
+Paramètres requis: firstName, lastName, isActive
+
+Obtenir la liste des contacts
+http://localhost:8080/ContactBook/Controller/contact?action=list
+
+Creer un nouveau contact
+http://localhost:8080/ContactBook/Controller/contact?action=create
+parametres passée en POST: firstName=xxx&lastName=xxx&birthDate=xxx&phoneNumber=xxx&email=xxx&isActive=xxx
+
+Mettre à jour un contact
+http://localhost:8080/ContactBook/Controller/contact?action=update
+parametres passée en POST: id=xxx&firstName=xxx&lastName=xxx&birthDate=xxx&phoneNumber=xxx&email=xxx&isActive=xxx
+
+Supprimer un contact
+http://localhost:8080/ContactBook/Controller/contact?action=delete
+parametres passée en POST: id=xxx
+
+Requettes HTTP Address
+
+Representation json:
+
+{
+	"contactId":21,
+	"type":"Billing",
+	"street":"Badeau",
+	"zip":"62852",
+	"city":"Chaska",
+	"country":"United States"
+}
+
+Le type de l'adresse peux etre: Billing | Delivrery | Both
+
+Obtenir la liste des adresses pour un contact
+http://localhost:8080/ContactBook/Controller/address?action=list&contactId=xxx
+
+@NotImplemented
+Creer une nouvelle adresse pour un contact
+http://localhost:8080/ContactBook/Controller/address?action=create&contactId=xxx
+parametres passée en POST: contactId=xxx&type=xxx&street=xxx&zip=xxx&city=xxx&country=xxx
+
+@NotImplemented
+Mettre à jour une nouvelle adresse pour un contact
+http://localhost:8080/ContactBook/Controller/address?action=update&contactId=xxx
+parametres passée en POST: contactId=xxx&type=xxx&street=xxx&zip=xxx&city=xxx&country=xxx
+
+@NotImplemented
+Supprimer adresse pour un contact
+http://localhost:8080/ContactBook/Controller/address?action=update&contactId=xxx
+parametres passée en POST: contactId=xxx&type=xxx&street=xxx&zip=xxx&city=xxx&country=xxx
+
+Reponse du serveur à une requette
+
+Message d'erreur
+
+{
+	"Result": "ERROR",
+	"Message": Contact not found.
+}
+
+Envoi d'un objet
+
+{"Result":"OK","Record":{"field1": 1, "field2"}}
+
+Envoi d'un tableau d'objets
+
+{"Result":"OK","Records":[{"field1": 1, "field2"}, {"field1": 1, "field2"}]}

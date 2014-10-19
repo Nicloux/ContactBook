@@ -1,28 +1,19 @@
 package com.spring.model;
 
-import java.util.HashMap;
 import java.util.LinkedList;
+
+import com.google.gson.annotations.Expose;
 
 public class Contact {
 	
-	private int id;
-	private String firstName;
-	private String lastName;
-	private String birthDate;
-	private String phoneNumber;
-	private String email;
-	private LinkedList<Address> addresses;
-	private boolean isActive;
-	
-	public Contact(String firstName, String lastName, String birthDate, String phoneNumber, String email, boolean isActive) {
-		addresses = new LinkedList<Address>();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.birthDate = birthDate;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.isActive = isActive;
-	}
+	@Expose private int id;
+	@Expose private String firstName;
+	@Expose private String lastName;
+	@Expose private String birthDate;
+	@Expose private String phoneNumber;
+	@Expose private String email;
+	@Expose(serialize = false) private LinkedList<Address> addresses;
+	@Expose private String isActive;
 
 	public Contact() {
 		addresses = new LinkedList<Address>();
@@ -88,11 +79,11 @@ public class Contact {
 		this.addresses.add(addresse);
 	}
 	
-	public boolean isActive() {
+	public String isActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setActive(String isActive) {
 		this.isActive = isActive;
 	}
 

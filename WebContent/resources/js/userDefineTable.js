@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $('#JTableContainer').jtable({
-    	paging: true,
     	selecting: true,
         multiselect: true,
         selectingCheckboxes: true, //Show checkboxes on first column
@@ -103,6 +102,7 @@ $(document).ready(function() {
             isActive : {
                 title : 'isActive',
                 width : '12%',
+                type: 'checkbox',
                 values: { 'false': 'Passive', 'true': 'Active' },
                 edit : true
             },
